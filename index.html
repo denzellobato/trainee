@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Residencial Masculino IAPE</title>
+    <link rel="logo" href="logo2.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -29,8 +30,14 @@
         }
 
         .logo img {
-          width: 500px;
-          height: 181px;
+            width: 500px;
+            height: 181px;  
+            position: relative;
+            width: 658px;
+            height: 358.8px;
+            overflow: hidden;
+            border-radius: 20px;
+            z-index: 2;
         }
 
         .menu-icon {
@@ -43,7 +50,7 @@
             position: absolute;
             top: 100%;
             right: 10vw;
-            background-color: #F0EBE3;
+            background-color: #2D4189;
             padding: 4vw;
             border-radius: 5px;
             z-index: 4;
@@ -63,6 +70,18 @@
 
         .nav-menu a:hover {
             background-color: #F0EBE3;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
@@ -93,43 +112,58 @@
             text-align: center;
             z-index: 3;
             margin-bottom: 5vw;
+            margin-top: -110px;
         }
 
         .hero-content h1 {
             font-size: 10vw;
             margin-bottom: 2vw;
             color: #0E2B43;
+            margin-top: -40px;
         }
 
         .hero-content p {
             font-size: 4vw;
             margin-bottom: 4vw;
             color: #0E2B43;
+            margin-top: 1px;
         }
 
         .hero-btn {
-            padding: 2vw 4vw;
+            padding: 6px 8px;
             background-color: transparent;
             border: 2px solid #3C54A2;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 4vw;
+            font-size: 6px;
             color: #3C54A2;
+            margin-top: 90px;
         }
 
-        .hero-circle {
+        .hero-carousel {
             position: relative;
-            width: 60vw;
-            height: 60vw;
-            background-color: #ffffff;
-            background-image: url('./images/hero-circle.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
+            width: 658px;
+            height: 358.8px;
+            overflow: hidden;
+            border-radius: 20px;
             z-index: 2;
         }
 
-        .smartphone {
+        .hero-carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .hero-carousel .smartphone {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -140,55 +174,24 @@
             z-index: 3;
         }
 
-        /* Middle Section */
-        .middle-section {
-            position: relative;
-            text-align: center;
-            padding: 30vw 10vw 10vw;
-            background-color: #3C54A2;
-        }
-
-        .middle-circle {
+        .hero-carousel button {
             position: absolute;
-            top: -20vw;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40vw;
-            height: 40vw;
-            background-color: #fff;
-            background-image: url('./images/middle-circle.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .middle-section h2 {
-            font-size: 8vw;
-            margin-bottom: 4vw;
-            color: #0E2B43;
-            position: relative;
-            z-index: 2;
-        }
-
-        .middle-section p {
-            font-size: 4vw;
-            margin-bottom: 4vw;
-            color: #0E2B43;
-            position: relative;
-            z-index: 2;
-        }
-
-        .middle-btn {
-            padding: 2vw 4vw;
-            background-color: #2b3a55;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            border-radius: 20px;
+            padding: 10px;
             cursor: pointer;
-            font-size: 4vw;
-            position: relative;
-            z-index: 2;
+            z-index: 4;
+        }
+
+        .hero-carousel .prev {
+            left: 10px;
+        }
+
+        .hero-carousel .next {
+            right: 10px;
         }
 
         /* Options Section */
@@ -197,6 +200,7 @@
             padding: 10vw;
             background: linear-gradient(to bottom, #3C54A2, #173886);
             color: white;
+            margin-top: 5vw;
         }
 
         .options h2 {
@@ -220,7 +224,7 @@
             width: 30vw;
             height: 30vw;
             background-color: #e0e0e0;
-            background-image: url('./images/icon-circle-1.jpg');
+            background-image: url('judson.png');
             background-size: cover;
             background-position: center;
             border-radius: 50%;
@@ -231,7 +235,7 @@
             width: 30vw;
             height: 30vw;
             background-color: #e0e0e0;
-            background-image: url('./images/icon-circle-2.jpg');
+            background-image: url('sidney.png');
             background-size: cover;
             background-position: center;
             border-radius: 50%;
@@ -242,13 +246,13 @@
             width: 30vw;
             height: 30vw;
             background-color: #e0e0e0;
-            background-image: url('./images/icon-circle-3.jpg');
+            background-image: url('agno.png');
             background-size: cover;
             background-position: center;
             border-radius: 50%;
             margin: 0 auto 4vw;
         }
- 
+
         .option-card h3 {
             font-size: 6vw;
             margin-bottom: 2vw;
@@ -259,22 +263,181 @@
             color: #d0d0d0;
         }
 
-        /* Contact and Photos Sections */
-        #contact, #photos {
+        /* Photos Section */
+        #photos {
             padding: 10vw;
             text-align: center;
             background-color: #173886;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        #contact h2, #photos h2 {
+        #photos h2 {
             font-size: 8vw;
             margin-bottom: 4vw;
             color: #0E2B43;
         }
 
-        #contact p, #photos p {
+        .photos-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6vw;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .photos-carousel {
+            position: relative;
+            width: 80vw;
+            height: 45vw;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .photos-carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+        }
+
+        .photos-carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .photos-carousel button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 4;
+        }
+
+        .photos-carousel .prev {
+            left: 10px;
+        }
+
+        .photos-carousel .next {
+            right: 10px;
+        }
+
+        .photos-link-btn {
+            padding: 2vw 4vw;
+            background-color: #2b3a55;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
             font-size: 4vw;
-            color: #F0EBE3;
+            margin-top: 4vw;
+            text-decoration: none;
+        }
+
+        /* Comments Section */
+        .comments {
+            padding: 10vw;
+            text-align: center;
+            background: #173886;
+            color: white;
+        }
+
+        .comments h2 {
+            font-size: 8vw;
+            margin-bottom: 8vw;
+            color: #0E2B43;
+        }
+
+        .comments-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6vw;
+            max-width: 90%;
+            margin: 0 auto;
+            align-items: stretch; /* Align items to stretch for equal width */
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4vw;
+            width: 100%;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            height: 30vw;
+            padding: 4vw;
+            font-size: 4vw;
+            border-radius: 10px;
+            border: 2px solid #3C54A2;
+            background-color: #F0EBE3;
+            color: #0E2B43;
+            resize: none;
+        }
+
+        .comment-form button {
+            padding: 2vw 4vw;
+            background-color: #2b3a55;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 4vw;
+        }
+
+        .comment-display {
+            background-color: #F0EBE3;
+            padding: 4vw;
+            border-radius: 10px;
+            color: #0E2B43;
+            width: 100%;
+            box-sizing: border-box;
+            max-height: 50vw;
+            overflow-y: auto;
+        }
+
+        .comment-display h3 {
+            font-size: 5vw;
+            margin-bottom: 4vw;
+        }
+
+        .comment-item {
+            margin-bottom: 4vw;
+            padding: 2vw;
+            border-bottom: 1px solid #3C54A2;
+        }
+
+        .comment-item p {
+            font-size: 3.5vw;
+            color: #0E2B43;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 10vw;
+            text-align: center;
+            background-color: #F3F3E0;
+        }
+
+        #contact h2 {
+            font-size: 8vw;
+            margin-bottom: 4vw;
+            color: #0E2B43;
+        }
+
+        #contact p {
+            font-size: 4vw;
+            color: #0E2B43;
         }
 
         /* Media Queries for Larger Screens */
@@ -284,8 +447,8 @@
             }
 
             .logo img {
-                 width: 300px;
-                 height: 200px;;
+                width: 300px;
+                height: 100px;
             }
 
             .menu-icon {
@@ -329,41 +492,25 @@
                 font-size: 16px;
             }
 
-            .hero-circle {
-                width: 350px;
-                height: 350px;
+            .hero-carousel {
+                width: 658px;
+                height: 358.8px;
+                border-radius: 20px;
             }
 
-            .smartphone {
+            .hero-carousel-images img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .hero-carousel .smartphone {
                 width: 200px;
                 height: 300px;
             }
 
-            .middle-section {
-                padding: 150px 50px 50px;
-            }
-
-            .middle-circle {
-                width: 200px;
-                height: 200px;
-                top: -100px;
-            }
-
-            .middle-section h2 {
-                font-size: 36px;
-            }
-
-            .middle-section p {
-                font-size: 16px;
-            }
-
-            .middle-btn {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
-
             .options {
                 padding: 50px;
+                margin-top: 50px;
             }
 
             .options h2 {
@@ -378,10 +525,15 @@
             }
 
             .option-card {
-                width: auto;
+                width: 35 0px;
             }
+            
+            .icon-circle-1 {
+                width: 190px;
+                height: 190px;
+            } 
 
-            .icon-circle-1, .icon-circle-2, .icon-circle-3 {
+            .icon-circle-2, .icon-circle-3 {
                 width: 150px;
                 height: 150px;
             }
@@ -394,15 +546,94 @@
                 font-size: 14px;
             }
 
-            #contact, #photos {
+            .comments {
                 padding: 50px;
             }
 
-            #contact h2, #photos h2 {
+            .comments h2 {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .comments-container {
+                flex-direction: row;
+                gap: 30px;
+                max-width: 1200px;
+                align-items: stretch;
+            }
+
+            .comment-form {
+                width: 50%;
+                gap: 20px;
+            }
+
+            .comment-form textarea {
+                height: 150px;
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .comment-form button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            .comment-display {
+                width: 50%;
+                padding: 20px;
+            }
+
+            .comment-display h3 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .comment-item {
+                margin-bottom: 20px;
+                padding: 15px;
+            }
+
+            .comment-item p {
+                font-size: 14px;
+            }
+
+            #photos {
+                padding: 50px;
+                flex-direction: row;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            #photos h2 {
                 font-size: 36px;
             }
 
-            #contact p, #photos p {
+            .photos-container {
+                flex-direction: row;
+                max-width: 1200px;
+            }
+
+            .photos-carousel {
+                width: 600px;
+                height: 337.5px;
+            }
+
+            .photos-link-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+                margin-top: 0;
+                align-self: center;
+            }
+
+            #contact {
+                padding: 50px;
+            }
+
+            #contact h2 {
+                font-size: 36px;
+            }
+
+            #contact p {
                 font-size: 16px;
             }
         }
@@ -410,7 +641,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="fade-in">
         <div class="logo">
             <img src="logo.png" alt="Logo">
         </div>
@@ -418,64 +649,99 @@
         <nav class="nav-menu">
             <a href="#contact">Contact</a>
             <a href="#photos">Photos</a>
+            <a href="#comments">Perguntas-campanhas e Comentários</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero fade-in">
         <div class="hero-content">
-            <h1>LANDING PAGE WIREFRAME.</h1>
-            <p>Lorem ipsum placeholder content text used for previewing layouts and visual mockups.</p>
-            <button class="hero-btn">More info</button>
+            <h1>Conheça o nosso Residencial</h1>
+            <p>Observe a estrutura do residensial masculino</p>
+            <a href="https://tourvirtual.uneb.org.br/iape/#24223143p&323.04h&49.32t" target="_blank" class="hero-btn">tour virtual</a>
         </div>
-        <div class="hero-circle">
+        <div class="hero-carousel">
+            <div class="hero-carousel-images">
+                <img src="estrutura2.PNG" alt="Hero Image 1">
+                <img src="estrutura3.PNG" alt="Hero Image 2">
+            </div>
             <div class="smartphone"></div>
+            <button class="prev" onclick="moveHeroCarousel(-1)">❮</button>
+            <button class="next" onclick="moveHeroCarousel(1)">❯</button>
         </div>
-    </section>
-
-    <!-- Middle Section -->
-    <section class="middle-section">
-        <div class="middle-circle"></div>
-        <h2>Let's Make Something Great.</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
-        <a href="https://tourvirtual.uneb.org.br/iape/#24221540p&323.04h&49.32t" target="_blank">
-        <button class="middle-btn">Learn More</button>
-        </a>
     </section>
 
     <!-- Options Section -->
-    <section class="options">
-        <h2>OPTIONS</h2>
+    <section class="options fade-in">
+        <h2>PRECEPTORES</h2>
         <div class="options-container">
             <div class="option-card">
                 <div class="icon-circle-1"></div>
-                <h3>One Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Judyson</h3>
+                <p>preceptor a quatro anos, pastor e casado,tem êxito em seu </p>
+                <p>papel como preceptor chefe do Residencial Masculino</p>
             </div>
             <div class="option-card">
                 <div class="icon-circle-2"></div>
-                <h3>Two Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Sidney</h3>
+                <p>formado em Administração e fotógrafo,</p>
+                <p>casado, com dois filhos, preceptor a dois anos.</p>
             </div>
             <div class="option-card">
                 <div class="icon-circle-3"></div>
-                <h3>Three Title</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Agno</h3>
+                <p>preceptor a três anos,demosntra cosntância</p>
+                <p>e estabilidade em sua função.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photos Section -->
+    <section id="photos" class="fade-in">
+        <h2>Fotos</h2>
+        <div class="photos-container">
+            <div class="photos-carousel">
+                <div class="photos-carousel-images">
+                    <img src="inss.jpeg" alt="Photo 1">
+                    <img src="day.jpeg" alt="Photo 2">
+                    <img src="dbv.jpeg" alt="Photo 3">
+                    <img src="jpes.jpeg" alt="Photo 4">
+                    <img src="bruno.jpeg" alt="Photo 5">
+                    <img src="Meninos 3.jpg" alt="Photo 6">
+                    <img src="Meninos 4.jpg" alt="Photo 7">
+                    <img src="Meninos 9.jpg" alt="Photo 8">
+                    <img src="meninos 1.jpg" alt="Photo 9">
+                    <img src="meninos 2 (2).jpg" alt="Photo 10">
+                </div>
+                <button class="prev" onclick="movePhotosCarousel(-1)">❮</button>
+                <button class="next" onclick="movePhotosCarousel(1)">❯</button>
+            </div>
+            <a href="https://www.flickr.com/photos/colegioiape/" target="_blank" class="photos-link-btn">Ver Mais</a>
+        </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section id="comments" class="comments fade-in">
+        <h2>Perguntas e Comentários</h2>
+        <div class="comments-container">
+            <div class="comment-form">
+                <textarea placeholder="Escreva sua pergunta ou comentário aqui..."></textarea>
+                <button onclick="submitComment()">Enviar</button>
+            </div>
+            <div class="comment-display">
+                <h3>Comentários</h3>
+                <div id="comment-list">
+                    <!-- Comments will be dynamically added here -->
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: contact@example.com</p>
-        <p>Phone: (123) 456-7890</p>
-    </section>
-
-    <!-- Photos Section -->
-    <section id="photos">
-        <h2>Photos</h2>
-        <p>Gallery coming soon!</p>
+    <section id="contact" class="fade-in">
+        <h2>PARA MAIS INFORMAÇÕES</h2>
+        <p>BR232, KM 95, sem número colégio IAPE</p>
+        <p>Telefone: (81) 99916-0154</p>
     </section>
 
     <script>
@@ -504,6 +770,80 @@
                 button.style.opacity = '1';
             });
         });
+
+        // Scroll Animation with Intersection Observer
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => observer.observe(element));
+
+        // Comment submission and persistence functionality
+        function submitComment() {
+            const textarea = document.querySelector('.comment-form textarea');
+            const commentList = document.getElementById('comment-list');
+            const commentText = textarea.value.trim();
+
+            if (commentText) {
+                const commentItem = document.createElement('div');
+                commentItem.className = 'comment-item';
+                commentItem.innerHTML = `<p>${commentText}</p>`;
+                commentList.prepend(commentItem);
+
+                // Save comment to localStorage
+                let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+                comments.unshift(commentText);
+                localStorage.setItem('comments', JSON.stringify(comments));
+
+                textarea.value = '';
+            }
+        }
+
+        // Load comments from localStorage on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const commentList = document.getElementById('comment-list');
+            let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            comments.forEach(commentText => {
+                const commentItem = document.createElement('div');
+                commentItem.className = 'comment-item';
+                commentItem.innerHTML = `<p>${commentText}</p>`;
+                commentList.prepend(commentItem);
+            });
+        });
+
+        // Hero Carousel functionality
+        let heroIndex = 0;
+        const heroImages = document.querySelector('.hero-carousel-images');
+        const heroTotalImages = document.querySelectorAll('.hero-carousel-images img').length;
+
+        function moveHeroCarousel(direction) {
+            heroIndex += direction;
+            if (heroIndex < 0) heroIndex = heroTotalImages - 1;
+            if (heroIndex >= heroTotalImages) heroIndex = 0;
+            heroImages.style.transform = `translateX(-${heroIndex * 100}%)`;
+        }
+
+        // Auto-scroll hero carousel every 5 seconds
+        setInterval(() => {
+            moveHeroCarousel(1);
+        }, 5000);
+
+        // Photos Carousel functionality
+        let photosIndex = 0;
+        const photosImages = document.querySelector('.photos-carousel-images');
+        const photosTotalImages = document.querySelectorAll('.photos-carousel-images img').length;
+
+        function movePhotosCarousel(direction) {
+            photosIndex += direction;
+            if (photosIndex < 0) photosIndex = photosTotalImages - 1;
+            if (photosIndex >= photosTotalImages) photosIndex = 0;
+            photosImages.style.transform = `translateX(-${photosIndex * 100}%)`;
+        }
     </script>
 </body>
 </html>
